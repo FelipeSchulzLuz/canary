@@ -111,16 +111,14 @@ bool ConfigManager::load()
 	if (!loaded) { //info that must be loaded one time (unless we reset the modules involved)
 		boolean[BIND_ONLY_GLOBAL_ADDRESS] = getGlobalBoolean(L, "bindOnlyGlobalAddress", false);
 		boolean[OPTIMIZE_DATABASE] = getGlobalBoolean(L, "startupDatabaseOptimization", true);
+		boolean[TOGGLE_MAP_CUSTOM] = getGlobalBoolean(L, "toggleMapCustom", true);
 
 		string[IP] = getGlobalString(L, "ip", "127.0.0.1");
 		string[MAP_NAME] = getGlobalString(L, "mapName", "canary");
 		string[MAP_AUTHOR] = getGlobalString(L, "mapAuthor", "Eduardo Dantas");
 
 		string[MAP_CUSTOM_NAME] = getGlobalString(L, "mapCustomName", "");
-		string[MAP_CUSTOM_FILE] = getGlobalString(L, "mapCustomFile", "");
-		string[MAP_CUSTOM_SPAWN] = getGlobalString(L, "mapCustomSpawn", "");
 		string[MAP_CUSTOM_AUTHOR] = getGlobalString(L, "mapCustomAuthor", "OTServBR");
-		boolean[MAP_CUSTOM_ENABLED] = getGlobalBoolean(L, "mapCustomEnabled", true);
 
 		string[HOUSE_RENT_PERIOD] = getGlobalString(L, "houseRentPeriod", "never");
 		string[MYSQL_HOST] = getGlobalString(L, "mysqlHost", "127.0.0.1");
@@ -178,7 +176,7 @@ bool ConfigManager::load()
 	boolean[WEATHER_RAIN] = getGlobalBoolean(L, "weatherRain", false);
 	boolean[WEATHER_THUNDER] = getGlobalBoolean(L, "thunderEffect", false);
 	boolean[ALL_CONSOLE_LOG] = getGlobalBoolean(L, "allConsoleLog", false);
-	boolean[FREE_QUESTS] = getGlobalBoolean(L, "freeQuests", false);
+	boolean[TOGGLE_FREE_QUEST] = getGlobalBoolean(L, "freeQuests", false);
 	boolean[STAMINA_TRAINER] = getGlobalBoolean(L, "staminaTrainer", false);
 	boolean[STAMINA_PZ] = getGlobalBoolean(L, "staminaPz", false);
 	boolean[SORT_LOOT_BY_CHANCE] = getGlobalBoolean(L, "sortLootByChance", false);
@@ -247,6 +245,7 @@ bool ConfigManager::load()
 	integer[STAMINA_TRAINER_GAIN] = getGlobalNumber(L, "staminaTrainerGain", 1);
 	integer[SAVE_INTERVAL_TIME] = getGlobalNumber(L, "saveIntervalTime", 1);
 	integer[MAX_ALLOWED_ON_A_DUMMY] = getGlobalNumber(L, "maxAllowedOnADummy", 1);
+	integer[FREE_QUEST_STAGE] = getGlobalNumber(L, "freeQuestStage", 1);
 
 	floating[RATE_HEALTH_REGEN] = getGlobalFloat(L, "rateHealthRegen", 1.0);
 	floating[RATE_HEALTH_REGEN_SPEED] = getGlobalFloat(L, "rateHealthRegenSpeed", 1.0);
