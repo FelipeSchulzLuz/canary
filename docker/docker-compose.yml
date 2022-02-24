@@ -2,14 +2,15 @@ version: "3.3"
 
 services:
   server:
+    #image: opentibiabr/canary:latest
     build:
       context: ../
-      dockerfile: docker/server/Dockerfile
+      dockerfile: ./Dockerfile
     ports:
       - 7171:7171
       - 7172:7172
     volumes:
-      - ../data:/otbr/data
+      - ../:/canary
     depends_on:
       - mysql
       - website
@@ -31,7 +32,9 @@ services:
       - 3306:3306
 
   website:
-    image: webdevops/php-nginx:alpine-php7
+    build:
+      context: ../
+      dockerfile: docker/website/Dockerfile
     restart: unless-stopped
     environment:
       - WEB_DOCUMENT_ROOT=/tmp/web/
@@ -40,7 +43,7 @@ services:
       - 8080:80
     volumes:
       - ./docker/data/web:/tmp/web
-      - ./:/tmp/otserver/
+      - ../:/tmp/canary/
     depends_on:
       - mysql
 
